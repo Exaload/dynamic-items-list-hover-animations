@@ -2,6 +2,8 @@
 
 A collection of beautiful, easily configurable hover animations for lists of items. Built with pure HTML, CSS, and JavaScript - no dependencies required!
 
+📚 **Additional Documentation**: [Français](README_FR.md) | [Usage Guide](USAGE.md) | [Quick Reference](QUICKREF.md) | [Summary](SUMMARY.md)
+
 ## 🌟 Features
 
 - **Multiple Animation Types**: Gradient scale, fade, slide, rotate, color transition, and combined effects

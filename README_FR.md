@@ -2,6 +2,8 @@
 
 Une collection d'animations de survol magnifiques et facilement configurables pour des listes d'éléments. Construites avec du HTML, CSS et JavaScript purs - aucune dépendance requise !
 
+📚 **Documentation Additionnelle**: [English](README.md) | [Guide d'Utilisation](USAGE.md) | [Référence Rapide](QUICKREF.md) | [Résumé](SUMMARY.md)
+
 ## 🌟 Fonctionnalités
 
 - **Plusieurs Types d'Animations** : Échelle en gradient, fondu, glissement, rotation, transition de couleur et effets combinés
