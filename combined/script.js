@@ -22,6 +22,7 @@ function initItems() {
         }
         item.textContent = i + 1;
         item.dataset.index = i;
+        item.style.setProperty('--item-index', i);
         itemsList.appendChild(item);
     }
     
@@ -64,9 +65,10 @@ function handleItemHover(hoveredIndex) {
         }
         
         item.style.transform = transform;
-        item.style.transition = `transform ${config.transitionSpeed}ms ease, ` +
-                                `box-shadow ${config.transitionSpeed}ms ease, ` +
-                                `background ${config.transitionSpeed}ms ease`;
+        item.style.transition = `transform ${config.transitionSpeed}ms cubic-bezier(0.68, -0.55, 0.265, 1.55), ` +
+                                `box-shadow ${config.transitionSpeed}ms cubic-bezier(0.4, 0, 0.2, 1), ` +
+                                `background ${config.transitionSpeed}ms cubic-bezier(0.4, 0, 0.2, 1), ` +
+                                `filter ${config.transitionSpeed}ms ease`;
     });
 }
 

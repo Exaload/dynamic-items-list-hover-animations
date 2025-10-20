@@ -127,6 +127,17 @@ h1 {
     margin-bottom: 30px;
 }
 
+@keyframes fadeInRotate {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8) rotate(-10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+}
+
 .item {
     width: var(--base-size);
     height: var(--base-size);
@@ -139,16 +150,51 @@ h1 {
     font-weight: bold;
     font-size: 1.2em;
     cursor: pointer;
-    transition: transform var(--transition-speed) ease,
-                box-shadow var(--transition-speed) ease;
+    transition: transform var(--transition-speed) cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                box-shadow var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
+                filter var(--transition-speed) ease,
+                background var(--transition-speed) ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     user-select: none;
+    position: relative;
+    transform-origin: center center;
+    will-change: transform;
+    animation: fadeInRotate 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
+}
+
+.item:nth-child(n) {
+    animation-delay: calc(0.035s * (var(--item-index, 0)));
+}
+
+.item::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    background: linear-gradient(45deg, transparent, rgba(155, 89, 182, 0.6), transparent);
+    opacity: 0;
+    transform: rotate(0deg);
+    transition: opacity var(--transition-speed) ease,
+                transform var(--transition-speed) ease;
+}
+
+.item:hover::before {
+    opacity: 1;
+    transform: rotate(360deg);
 }
 
 .item:hover {
-    transform: rotate(var(--rotation-angle)) scale(1.1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: rotate(var(--rotation-angle)) scale(1.2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3),
+                0 0 35px rgba(155, 89, 182, 0.5);
     z-index: 10;
+    filter: brightness(1.15) saturate(1.2);
+    background: linear-gradient(135deg, #b08ae8, #a963d0);
+}
+
+.item:active {
+    transform: rotate(0deg) scale(1.05);
+    transition: transform 0.15s ease;
 }
 
 .documentation {

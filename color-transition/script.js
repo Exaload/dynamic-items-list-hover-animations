@@ -13,6 +13,7 @@ function initItems() {
         const item = document.createElement('div');
         item.className = 'item';
         item.textContent = i + 1;
+        item.style.setProperty('--item-index', i);
         itemsList.appendChild(item);
     }
 }

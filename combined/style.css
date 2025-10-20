@@ -138,6 +138,17 @@ h1 {
     margin-bottom: 30px;
 }
 
+@keyframes fadeInBounce {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.85) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+}
+
 .item {
     width: var(--base-size);
     height: var(--base-size);
@@ -150,20 +161,76 @@ h1 {
     font-weight: bold;
     font-size: 1.2em;
     cursor: pointer;
-    transition: transform var(--transition-speed) ease,
-                box-shadow var(--transition-speed) ease,
-                background var(--transition-speed) ease;
+    transition: transform var(--transition-speed) cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                box-shadow var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
+                background var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
+                filter var(--transition-speed) ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     user-select: none;
+    position: relative;
+    overflow: hidden;
+    transform-origin: center center;
+    will-change: transform;
+    animation: fadeInBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
+}
+
+.item:nth-child(n) {
+    animation-delay: calc(0.04s * (var(--item-index, 0)));
+}
+
+.item::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(255, 255, 255, 0.15) 60deg,
+        transparent 120deg
+    );
+    opacity: 0;
+    animation: spin 3s linear infinite;
+    animation-play-state: paused;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.item:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.item::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.item:hover::after {
+    opacity: 1;
 }
 
 .item:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35),
+                0 0 50px rgba(253, 121, 168, 0.5);
     z-index: 10;
+    filter: brightness(1.2) saturate(1.1);
 }
 
 .item.color-transition:hover {
     background: linear-gradient(135deg, var(--hover-color-1), var(--hover-color-2));
+    transform: scale(1.15) translateY(-3px);
+}
+
+.item:active {
+    transform: scale(1.05) !important;
+    transition: transform 0.1s ease !important;
 }
 
 .documentation {

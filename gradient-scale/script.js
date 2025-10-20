@@ -16,6 +16,7 @@ function initItems() {
         item.className = 'item';
         item.textContent = i + 1;
         item.dataset.index = i;
+        item.style.setProperty('--item-index', i);
         itemsList.appendChild(item);
     }
     
@@ -51,7 +52,7 @@ function handleItemHover(hoveredIndex) {
         }
         
         item.style.transform = `scale(${scale})`;
-        item.style.transition = `transform ${config.transitionSpeed}ms ease`;
+        item.style.transition = `transform ${config.transitionSpeed}ms cubic-bezier(0.34, 1.56, 0.64, 1)`;
     });
 }
 
