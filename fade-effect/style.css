@@ -1,0 +1,218 @@
+:root {
+    --fade-opacity: 0.3;
+    --transition-speed: 300ms;
+    --base-size: 60px;
+    --item-spacing: 10px;
+    --primary-color: #e74c3c;
+    --secondary-color: #c0392b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+.description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.controls {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.controls h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.control-group label {
+    min-width: 180px;
+    font-weight: 500;
+    color: #555;
+}
+
+.control-group input[type="range"] {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.control-group input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.control-group input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.2);
+}
+
+.control-group span {
+    min-width: 50px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.items-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--item-spacing);
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.item {
+    width: var(--base-size);
+    height: var(--base-size);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: opacity var(--transition-speed) ease,
+                transform var(--transition-speed) ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    opacity: 1;
+}
+
+.items-list:hover .item {
+    opacity: var(--fade-opacity);
+}
+
+.items-list .item:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    z-index: 10;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.documentation {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.documentation h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.documentation p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.documentation ul {
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+.documentation li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.documentation code {
+    background: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    color: #d63384;
+    font-size: 0.95em;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .control-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .control-group label {
+        min-width: auto;
+    }
+    
+    .control-group input[type="range"] {
+        width: 100%;
+    }
+}
